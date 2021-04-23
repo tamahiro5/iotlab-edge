@@ -1,2 +1,2 @@
-# Edge sample client for Google Cloud IOT Core
+## Edge sample client for Google Cloud IoT Core
 
