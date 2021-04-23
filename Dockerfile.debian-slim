@@ -5,6 +5,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 RUN apt update && apt install -y python3-dev python3-pip git curl gcc bash apt-transport-https ca-certificates gnupg google-cloud-sdk libcairo2-dev libffi-dev
 RUN  pip3 install --upgrade pip && python3 -m pip install --upgrade pip setuptools wheel
+RUN curl -s -L https://pki.google.com/roots.pem -o roots.pem
 
 COPY roots.pem .
 COPY my-sample.py .

@@ -22,9 +22,9 @@ services:
   #     dockerfile: Dockerfile.debian-slim
   #     context: .
   #   environment:
-  #     - PROJECT_ID=YOUR_PROJECT_ID
-  #     - MY_REGION=GCP_REGION_FOR_IOT_CORE
-  #     - HOST=YOUR_DEVICE_NAME
+  #     - PROJECT_ID=${MY_PROJECT_ID}
+  #     - MY_REGION=${MY_REGION}
+  #     - HOST=${MY_HOST}
   #   privileged: true
   #   volumes:
   #     - /var/certs:/var/key
