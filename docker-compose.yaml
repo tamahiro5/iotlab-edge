@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  ras:
+    build: 
+      dockerfile: Dockerfile.debian-slim
+      context: .
+    environment:
+      - PROJECT_ID=${MY_PROJECT_ID}
+      - MY_REGION=${MY_REGION}
+      - HOST=${MY_HOST}
+    # for local devices
+    privileged: true
+    volumes:
+      - /var/certs:/var/key
+
+
+  ### You can add some entries with different HOST value as mush as you need
+  ### like this
+  # ras2:
+  #   build: 
+  #     dockerfile: Dockerfile.debian-slim
+  #     context: .
+  #   environment:
+  #     - PROJECT_ID=YOUR_PROJECT_ID
+  #     - MY_REGION=GCP_REGION_FOR_IOT_CORE
+  #     - HOST=YOUR_DEVICE_NAME
+  #   privileged: true
+  #   volumes:
+  #     - /var/certs:/var/key
