@@ -32,11 +32,11 @@ import paho.mqtt.client as mqtt
 
 import random
 
-def create_jwt(project_id, private_key_file, algorithm):
+def create_jwt(project_id, key_file, algorithm):
     """Creates a JWT (https://jwt.io) to establish an MQTT connection.
         Args:
          project_id: The cloud project ID this device belongs to
-         private_key_file: A path to a file containing either an RSA256 or
+         key_file: A path to a file containing either an RSA256 or
                  ES256 private key.
          algorithm: The encryption algorithm to use. Either 'RS256' or 'ES256'
         Returns:
@@ -44,7 +44,7 @@ def create_jwt(project_id, private_key_file, algorithm):
             expires in 20 minutes. After 20 minutes, your client will be
             disconnected, and a new JWT will have to be generated.
         Raises:
-            ValueError: If the private_key_file does not contain a known key.
+            ValueError: If the key_file does not contain a known key.
         """
 
     token = {
@@ -57,13 +57,13 @@ def create_jwt(project_id, private_key_file, algorithm):
     }
 
     # Read the private key file.
-    with open(private_key_file, 'r') as f:
-        private_key = f.read()
+    with open(key_file, 'r') as f:
+        key = f.read()
 
     print('Creating JWT using {} from private key file {}'.format(
-            algorithm, private_key_file))
+            algorithm, key_file))
 
-    return jwt.encode(token, private_key, algorithm=algorithm)
+    return jwt.encode(token, key, algorithm=algorithm)
 
 
 def error_str(rc):
@@ -117,7 +117,7 @@ def parse_command_line_args():
     parser.add_argument(
             '--device_id', required=True, help='Cloud IoT Core device id')
     parser.add_argument(
-            '--private_key_file',
+            '--key_file',
             required=True, help='Path to private key file.')
     parser.add_argument(
             '--algorithm',
@@ -189,7 +189,7 @@ def main():
     client.username_pw_set(
             username='unused',
             password=create_jwt(
-                    args.project_id, args.private_key_file, args.algorithm))
+                    args.project_id, args.key_file, args.algorithm))
 
     # Enable SSL/TLS support.
     client.tls_set(ca_certs=args.ca_certs)
@@ -271,7 +271,7 @@ def main():
             client.username_pw_set(
                 username='unused',
                 password=create_jwt(
-                    args.project_id, args.private_key_file, args.algorithm))
+                    args.project_id, args.key_file, args.algorithm))
 
         # shingo
 
