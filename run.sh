@@ -23,6 +23,6 @@ python3 my-sample.py \
    --cloud_region=$MY_REGION \
    --registry_id=$REGISTRY \
    --device_id=$HOST \
-   --private_key_file=$KEY_FILE \
+   --key_file=$KEY_FILE \
    --message_type=event \
    --algorithm=RS256

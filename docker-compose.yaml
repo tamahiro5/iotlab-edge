@@ -13,7 +13,7 @@ services:
     volumes:
       - /var/certs:/var/key
     # for local devices
-    privileged: true
+    ## privileged: true
 
 
   ### You can add some entries with different HOST value as mush as you need
