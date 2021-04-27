@@ -9,7 +9,6 @@ services:
       - PROJECT_ID=${MY_PROJECT_ID}
       - MY_REGION=${MY_REGION}
       - HOST=${MY_HOST}
-    init: true
     volumes:
       - /var/certs:/var/key
     # for local devices
